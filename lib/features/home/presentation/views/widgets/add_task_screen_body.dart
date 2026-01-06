@@ -59,6 +59,12 @@ class _AddTaskScreenBodyState extends State<AddTaskScreenBody> {
                   createdAt: DateTime.now(),
                 );
                 Provider.of<ToDoProvider>(context, listen: false).addToDo(toDo);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Task added successfully'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
                 GoRouter.of(context).pop();
               }
             },
