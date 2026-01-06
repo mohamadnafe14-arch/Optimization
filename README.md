@@ -1,16 +1,66 @@
-# to_do_app
+# To-Do App
 
-A new Flutter project.
+A modern, persistent To-Do application built with Flutter. Keep track of your tasks efficiently with a clean dark-themed interface.
 
-## Getting Started
+## 🚀 Features
 
-This project is a starting point for a Flutter application.
+- **Task Management**: Add, edit, delete, and toggle tasks as completed.
+- **Persistence**: All data is stored locally using **Hive**, ensuring your tasks are saved even after closing the app.
+- **Filtering**: Easily filter tasks by state (All, Completed, Pending).
+- **Search**: Real-time search functionality to find specific tasks.
+- **Responsive Design**: Built with `flutter_screenutil` to adapt to different screen sizes.
+- **Dark Mode**: Sleek dark theme for reduced eye strain.
 
-A few resources to get you started if this is your first Flutter project:
+## 🛠️ Tech Stack
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Framework**: [Flutter](https://flutter.dev/)
+- **State Management**: [Provider](https://pub.dev/packages/provider)
+- **Local Database**: [Hive](https://pub.dev/packages/hive)
+- **Routing**: [GoRouter](https://pub.dev/packages/go_router)
+- **Responsiveness**: [flutter_screenutil](https://pub.dev/packages/flutter_screenutil)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📂 Project Structure
+
+```
+lib/
+├── core/
+│   ├── models/      # Data models (Hive adapters)
+│   ├── providers/   # State management logic
+│   └── utils/       # Constants and Routes
+├── features/
+│   ├── home/        # Home screen & Add Task screen
+│   └── splash/      # Splash screen
+└── main.dart        # Entry point & App Config
+```
+
+## 🏁 Getting Started
+
+### Prerequisites
+
+- [Flutter SDK](https://docs.flutter.dev/get-started/install) installed.
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone <repository-url>
+   cd to_do_app
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   flutter pub get
+   ```
+
+3. **Run the app**:
+   ```bash
+   flutter run
+   ```
+
+### Code Generation (Hive)
+
+If you modify the models, run the build runner to regenerate Hive adapters:
+
+```bash
+dart run build_runner build
+```
