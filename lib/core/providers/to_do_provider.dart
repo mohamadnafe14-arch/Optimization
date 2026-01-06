@@ -3,13 +3,15 @@ import 'package:hive/hive.dart';
 import 'package:to_do_app/core/models/to_do_model.dart';
 
 class ToDoProvider extends ChangeNotifier {
-  List<ToDoModel> toDoList = [];
+  List<ToDoModel> _toDoList = [];
+  List<ToDoModel> get toDoList => _toDoList;
   int getNextId() {
-    return toDoList.length + 1;
+    return _toDoList.length + 1;
   }
+
   void _update() {
     var hiveBox = Hive.box<ToDoModel>('toDoBox');
-    toDoList = hiveBox.values.toList();
+    _toDoList = hiveBox.values.toList();
     notifyListeners();
   }
 
@@ -21,18 +23,6 @@ class ToDoProvider extends ChangeNotifier {
 
   void removeToDo(ToDoModel toDo) {
     toDo.delete();
-    _update();
-  }
-
-  void updateToDoStatus({
-    required ToDoModel toDo,
-    required bool isCompleted,
-    required String title,
-    required String description,
-  }) {
-    toDo.isCompleted = isCompleted;
-    toDo.title = title;
-    toDo.save();
     _update();
   }
 
