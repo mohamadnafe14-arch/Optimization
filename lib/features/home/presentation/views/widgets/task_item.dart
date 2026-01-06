@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/core/models/to_do_model.dart';
 import 'package:to_do_app/core/providers/to_do_provider.dart';
 
 class TaskItem extends StatelessWidget {
-  const TaskItem({super.key, required this.provider, required this.index});
+  const TaskItem({super.key, required this.toDoModel, required this.provider});
+  final ToDoModel toDoModel;
   final ToDoProvider provider;
-  final int index;
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: Checkbox(
-        value: provider.toDoList[index].isCompleted,
+        value: toDoModel.isCompleted,
         onChanged: (value) {
-          provider.toggleToDoStatus(toDo: provider.toDoList[index]);
+          provider.toggleToDoStatus(toDo: toDoModel);
         },
       ),
       title: Text(
-        provider.toDoList[index].title,
+        toDoModel.title,
         style: TextStyle(
-          decoration: provider.toDoList[index].isCompleted
+          decoration: toDoModel.isCompleted
               ? TextDecoration.lineThrough
               : TextDecoration.none,
         ),
@@ -25,7 +26,7 @@ class TaskItem extends StatelessWidget {
       trailing: IconButton(
         icon: const Icon(Icons.delete),
         onPressed: () {
-          provider.removeToDo(provider.toDoList[index]);
+          provider.removeToDo(toDoModel);
         },
       ),
     );
